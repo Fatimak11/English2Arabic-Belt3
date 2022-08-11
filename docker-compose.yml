@@ -16,7 +16,7 @@ services:
       - privet 
 
   web:
-    build: ./web
+    build: ./English2Arabic-Belt3/web
     environment:
       - API_URL=http://api:3001/data
     depends_on:
