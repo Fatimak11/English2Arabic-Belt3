@@ -4,7 +4,7 @@ services:
   api:
     build: ./English2Arabic-Belt3/api
     environment:
-      - CONNECTION_STRING=postgres://postgres_user:postgres_user@db/postgres_db
+      - CONNECTION_STRING=demo://demo_user:demo_user@db/demo_db
     depends_on: 
       - db 
     command: nodemon server.js
@@ -30,9 +30,9 @@ services:
   db:
     image: postgres:11.2-alpine
     environment:
-      POSTGRES_USER: postgres_user
-      POSTGRES_PASSWORD: postgres_user
-      POSTGRES_DB: postgres_db
+      POSTGRES_USER: demo_user
+      POSTGRES_PASSWORD: demo_user
+      POSTGRES_DB: demo_db
     volumes:
       - "db-data:/var/lib/postgresql/data"
     networks:
