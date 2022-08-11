@@ -36,7 +36,6 @@ services:
     networks:
       - private 
 
-
 networks:
-  public:
-  private:
+ public:
+ private:
