@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  api:
+    build: ./api
+    environment:
+      - CONNECTION_STRING=postgres://postgres_user:postgres_user@db/postgres_db
+    depends_on: 
+      - db 
+    command: nodemon server.js
+    volumes:
+      - ./api:/app
+    ports:
+      - "3001:3001"
+    networks:
+      - public
+      - privet 
+
+  web:
+    build: ./web
+    environment:
+      - API_URL=http://api:3001/data
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    networks:
+      - public
+      
+
+  db:
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_user
+      POSTGRES_DB: postgres_db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - privet
+
+
+networks:
+  public:
+  privet:
