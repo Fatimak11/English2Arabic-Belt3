@@ -7,11 +7,14 @@ services:
       - CONNECTION_STRING=demo://demo_user:demo_user@db/demo_db
     depends_on: 
       - db 
+    ports:
+      - "3001:3001"
+      - "80:3000"
     volumes:
       - ./api:/app
     networks:
-      - public
-      - private  
+      - front-tier
+      - back-tier 
 
   web:
     build: ./English2Arabic-Belt3/web
@@ -22,7 +25,7 @@ services:
     ports:
       - "3000:80"
     networks:
-      - public
+      - front-tier
       
 
   db:
@@ -34,8 +37,8 @@ services:
     volumes:
       - ./init_sql_scripts/:/docker-entrypoint-initdb.d
     networks:
-      - private 
+      - back-tier
 
 networks:
- public:
- private:
+  front-tier:
+  back-tier:
