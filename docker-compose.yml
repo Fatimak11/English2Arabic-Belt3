@@ -7,14 +7,11 @@ services:
       - CONNECTION_STRING=demo://demo_user:demo_user@db/demo_db
     depends_on: 
       - db 
-    command: nodemon server.js
     volumes:
       - ./api:/app
-    ports:
-      - "3001:3001"
     networks:
       - public
-      - privet 
+      - private  
 
   web:
     build: ./English2Arabic-Belt3/web
@@ -37,9 +34,9 @@ services:
     volumes:
       - ./init_sql_scripts/postgres:/docker-entrypoint-initdb.d
     networks:
-      - privet
+      - private 
 
 
 networks:
   public:
-  privet:
+  private:
