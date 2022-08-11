@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   api:
-    build: ./api
+    build: ./English2Arabic-Belt3/api
     environment:
       - CONNECTION_STRING=postgres://postgres_user:postgres_user@db/postgres_db
     depends_on: 
