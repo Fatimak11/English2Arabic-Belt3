@@ -10,6 +10,7 @@ services:
     command: nodemon server.js
     volumes:
       - ./api:/app
+
     networks:
       - public
       - privet 
